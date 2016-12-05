@@ -11,6 +11,10 @@ $(call lazy,CFLAGS,$$(shell dpkg-buildflags --get CFLAGS))
 $(call lazy,CPPFLAGS,$$(shell dpkg-buildflags --get CPPFLAGS))
 $(call lazy,LDFLAGS,$$(shell dpkg-buildflags --get LDFLAGS))
 
+ifneq (,$(filter -O3,$(CFLAGS)))
+  CFLAGS := $(CFLAGS) -Wno-error=maybe-uninitialized
+endif
+
 PREPROCESS_FILES := $(wildcard debian/*.in)
 
 $(PREPROCESS_FILES:.in=): %: %.in
@@ -135,6 +139,7 @@ override_dh_auto_install: $(PREPROCESS_FILES:.in=)
 		$(DISTDIR)/lib/libssl3.so
 	install -m 644 -t debian/libnss3/usr/lib/$(DEB_HOST_MULTIARCH)/nss \
 		$(DISTDIR)/lib/libfreebl3.so \
+		$(DISTDIR)/lib/libfreeblpriv3.so \
 		$(DISTDIR)/lib/libsoftokn3.so \
 		$(DISTDIR)/lib/libnssdbm3.so \
 		$(DISTDIR)/lib/libnsssysinit.so \
@@ -188,7 +193,7 @@ endif
 
 override_dh_strip:
 	dh_strip -a --dbg-package=libnss3-dbg
-	$(foreach lib,libsoftokn3.so libfreebl3.so libnssdbm3.so, \
+	$(foreach lib,libsoftokn3.so libfreebl3.so libfreeblpriv3.so libnssdbm3.so, \
 		$(call cmd,umask 022; $(SHLIBSIGN) -v -i debian/libnss3/usr/lib/$(DEB_HOST_MULTIARCH)/nss/$(lib)))
 
 ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))

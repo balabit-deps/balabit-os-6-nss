@@ -14,10 +14,10 @@ Index: nss/nss/cmd/shlibsign/shlibsign.c
 +/* nssutil headers */
 +#include "secport.h"
 +
- #define NUM_ELEM(array) (sizeof(array)/sizeof(array[0]))
+ #define NUM_ELEM(array) (sizeof(array) / sizeof(array[0]))
  CK_BBOOL true = CK_TRUE;
  CK_BBOOL false = CK_FALSE;
-@@ -697,7 +700,6 @@ int main(int argc, char **argv)
+@@ -706,7 +709,6 @@ main(int argc, char **argv)
  {
      PLOptState *optstate;
      char *program_name;
@@ -25,7 +25,7 @@ Index: nss/nss/cmd/shlibsign/shlibsign.c
      PRLibrary *lib;
      PRFileDesc *fd;
      PRStatus rv = PR_SUCCESS;
-@@ -855,15 +857,17 @@ int main(int argc, char **argv)
+@@ -864,14 +866,17 @@ main(int argc, char **argv)
          return 1;
      }
  
@@ -45,7 +45,6 @@ Index: nss/nss/cmd/shlibsign/shlibsign.c
 +        SHLIB_PREFIX"softokn"SOFTOKEN_SHLIB_VERSION"."SHLIB_SUFFIX);
      assert(lib != NULL);
 -    PR_FreeLibraryName(libname);
--
  
      if (FIPSMODE) {
          /* FIPSMODE == FC_GetFunctionList */

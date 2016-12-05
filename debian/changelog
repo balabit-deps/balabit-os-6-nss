@@ -1,3 +1,23 @@
+nss (2:3.26.2-0ubuntu0.16.04.2) xenial-security; urgency=medium
+
+  * Updated to upstream 3.26.2 to fix security issues and get a new CA
+    certificate bundle.
+  * SECURITY UPDATE: denial of service via invalid DH keys
+    - CVE-2016-5285
+  * SECURITY UPDATE: small subgroup confinement attack
+    - CVE-2016-8635
+  * SECURITY UPDATE: insufficient mitigation of timing side-channel attack
+    - CVE-2016-9074
+  * debian/rules: added libfreeblpriv3.so.
+  * debian/libnss3.symbols: updated for new version, added
+    SSL_GetCipherSuiteInfo and SSL_GetChannelInfo as they are not backwards
+    compatible.
+  * debian/patches/*.patch: refreshed for new version.
+  * debian/rules: When building with -O3, build with -Wno-error=maybe-
+    uninitialized to fix FTBFS on ppc64el and powerpc.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 05 Dec 2016 07:17:18 -0500
+
 nss (2:3.23-0ubuntu0.16.04.1) xenial-security; urgency=medium
 
   * Updated to upstream 3.23 to fix a security issue and get a new CA

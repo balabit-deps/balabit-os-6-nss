@@ -8,7 +8,7 @@ Index: nss/nss/lib/freebl/unix_rand.c
 ===================================================================
 --- nss.orig/nss/lib/freebl/unix_rand.c
 +++ nss/nss/lib/freebl/unix_rand.c
-@@ -157,7 +157,8 @@ static SECStatus RNG_kstat(PRUint32* fed
+@@ -159,7 +159,8 @@ static SECStatus RNG_kstat(PRUint32* fed
  
  #if defined(SCO) || defined(UNIXWARE) || defined(BSDI) || defined(FREEBSD) \
      || defined(NETBSD) || defined(DARWIN) || defined(OPENBSD) \
@@ -61,7 +61,7 @@ Index: nss/nss/coreconf/arch.mk
 ===================================================================
 --- nss.orig/nss/coreconf/arch.mk
 +++ nss/nss/coreconf/arch.mk
-@@ -122,6 +122,14 @@ ifeq ($(OS_ARCH),Linux)
+@@ -123,6 +123,14 @@ ifeq ($(OS_ARCH),Linux)
      ifneq ($(words $(OS_RELEASE)),1)
  	OS_RELEASE := $(word 1,$(OS_RELEASE)).$(word 2,$(OS_RELEASE))
      endif
@@ -113,7 +113,7 @@ Index: nss/nss/coreconf/Linux.mk
  
  DSO_CFLAGS		= -fPIC
  DSO_LDOPTS		= -shared $(ARCHFLAG) -Wl,--gc-sections
-@@ -163,7 +170,7 @@ ifdef _SBOX_DIR
+@@ -167,7 +174,7 @@ ifdef _SBOX_DIR
  LDFLAGS			+= -Wl,-rpath-link,/usr/lib:/lib
  endif
  
@@ -122,7 +122,7 @@ Index: nss/nss/coreconf/Linux.mk
  G++INCLUDES		= -I/usr/include/g++
  
  #
-@@ -198,7 +205,9 @@ RPATH = -Wl,-rpath,'$$ORIGIN:/opt/sun/pr
+@@ -202,7 +209,9 @@ RPATH = -Wl,-rpath,'$$ORIGIN:/opt/sun/pr
  endif
  endif
  
