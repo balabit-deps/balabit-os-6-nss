@@ -4,25 +4,24 @@
 ## DP: GNU/kFreeBSD support. bz#356011
 ## DP: Added Hurd support.
 
-Index: nss/nss/lib/freebl/unix_rand.c
+Index: nss-3.28.4/nss/lib/freebl/unix_rand.c
 ===================================================================
---- nss.orig/nss/lib/freebl/unix_rand.c
-+++ nss/nss/lib/freebl/unix_rand.c
-@@ -159,7 +159,8 @@ static SECStatus RNG_kstat(PRUint32* fed
+--- nss-3.28.4.orig/nss/lib/freebl/unix_rand.c	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/lib/freebl/unix_rand.c	2017-04-26 10:19:54.818161445 -0400
+@@ -160,7 +160,7 @@
  
- #if defined(SCO) || defined(UNIXWARE) || defined(BSDI) || defined(FREEBSD) \
-     || defined(NETBSD) || defined(DARWIN) || defined(OPENBSD) \
--    || defined(NTO) || defined(__riscos__)
-+    || defined(NTO) || defined(__riscos__) || defined(__GNU__) \
-+    || defined(__FreeBSD_kernel__) || defined(__NetBSD_kernel__)
+ #endif
+ 
+-#if defined(SCO) || defined(UNIXWARE) || defined(BSDI) || defined(FREEBSD) || defined(NETBSD) || defined(DARWIN) || defined(OPENBSD) || defined(NTO) || defined(__riscos__)
++#if defined(SCO) || defined(UNIXWARE) || defined(BSDI) || defined(FREEBSD) || defined(NETBSD) || defined(DARWIN) || defined(OPENBSD) || defined(NTO) || defined(__riscos__) || defined(__GNU__) || defined(__FreeBSD_kernel__) || defined(__NetBSD_kernel__)
  #include <sys/times.h>
  
  #define getdtablesize() sysconf(_SC_OPEN_MAX)
-Index: nss/nss/lib/softoken/softoken.h
+Index: nss-3.28.4/nss/lib/softoken/softoken.h
 ===================================================================
---- nss.orig/nss/lib/softoken/softoken.h
-+++ nss/nss/lib/softoken/softoken.h
-@@ -184,7 +184,7 @@ extern PRBool sftk_fatalError;
+--- nss-3.28.4.orig/nss/lib/softoken/softoken.h	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/lib/softoken/softoken.h	2017-04-26 10:19:04.069358739 -0400
+@@ -183,7 +183,7 @@
  
  #define CHECK_FORK_MIXED
  
@@ -31,11 +30,11 @@ Index: nss/nss/lib/softoken/softoken.h
  
  #define CHECK_FORK_PTHREAD
  
-Index: nss/nss/lib/ssl/sslmutex.c
+Index: nss-3.28.4/nss/lib/ssl/sslmutex.c
 ===================================================================
---- nss.orig/nss/lib/ssl/sslmutex.c
-+++ nss/nss/lib/ssl/sslmutex.c
-@@ -60,7 +60,7 @@ single_process_sslMutex_Lock(sslMutex* p
+--- nss-3.28.4.orig/nss/lib/ssl/sslmutex.c	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/lib/ssl/sslmutex.c	2017-04-26 10:19:04.069358739 -0400
+@@ -60,7 +60,7 @@
      return SECSuccess;
  }
  
@@ -44,11 +43,11 @@ Index: nss/nss/lib/ssl/sslmutex.c
  
  #include <unistd.h>
  #include <fcntl.h>
-Index: nss/nss/lib/ssl/sslmutex.h
+Index: nss-3.28.4/nss/lib/ssl/sslmutex.h
 ===================================================================
---- nss.orig/nss/lib/ssl/sslmutex.h
-+++ nss/nss/lib/ssl/sslmutex.h
-@@ -49,7 +49,7 @@ typedef struct {
+--- nss-3.28.4.orig/nss/lib/ssl/sslmutex.h	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/lib/ssl/sslmutex.h	2017-04-26 10:19:04.069358739 -0400
+@@ -49,7 +49,7 @@
  
  typedef int sslPID;
  
@@ -57,11 +56,11 @@ Index: nss/nss/lib/ssl/sslmutex.h
  
  #include <sys/types.h>
  #include "prtypes.h"
-Index: nss/nss/coreconf/arch.mk
+Index: nss-3.28.4/nss/coreconf/arch.mk
 ===================================================================
---- nss.orig/nss/coreconf/arch.mk
-+++ nss/nss/coreconf/arch.mk
-@@ -123,6 +123,14 @@ ifeq ($(OS_ARCH),Linux)
+--- nss-3.28.4.orig/nss/coreconf/arch.mk	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/coreconf/arch.mk	2017-04-26 10:19:04.069358739 -0400
+@@ -115,6 +115,14 @@
      ifneq ($(words $(OS_RELEASE)),1)
  	OS_RELEASE := $(word 1,$(OS_RELEASE)).$(word 2,$(OS_RELEASE))
      endif
@@ -76,11 +75,11 @@ Index: nss/nss/coreconf/arch.mk
  endif
  
  #
-Index: nss/nss/coreconf/Linux.mk
+Index: nss-3.28.4/nss/coreconf/Linux.mk
 ===================================================================
---- nss.orig/nss/coreconf/Linux.mk
-+++ nss/nss/coreconf/Linux.mk
-@@ -106,7 +106,7 @@ ifneq ($(OS_TARGET),Android)
+--- nss-3.28.4.orig/nss/coreconf/Linux.mk	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/coreconf/Linux.mk	2017-04-26 10:19:04.069358739 -0400
+@@ -106,7 +106,7 @@
  LIBC_TAG		= _glibc
  endif
  
@@ -89,7 +88,7 @@ Index: nss/nss/coreconf/Linux.mk
  	OS_REL_CFLAGS	+= -DLINUX2_0
  	MKSHLIB		= $(CC) -shared -Wl,-soname -Wl,$(@:$(OBJDIR)/%.so=%.so) $(RPATH)
  	ifdef MAPFILE
-@@ -139,14 +139,21 @@ ifeq ($(USE_PTHREADS),1)
+@@ -139,14 +139,21 @@
  OS_PTHREAD = -lpthread 
  endif
  
@@ -113,7 +112,7 @@ Index: nss/nss/coreconf/Linux.mk
  
  DSO_CFLAGS		= -fPIC
  DSO_LDOPTS		= -shared $(ARCHFLAG) -Wl,--gc-sections
-@@ -167,7 +174,7 @@ ifdef _SBOX_DIR
+@@ -167,7 +174,7 @@
  LDFLAGS			+= -Wl,-rpath-link,/usr/lib:/lib
  endif
  
@@ -122,7 +121,7 @@ Index: nss/nss/coreconf/Linux.mk
  G++INCLUDES		= -I/usr/include/g++
  
  #
-@@ -202,7 +209,9 @@ RPATH = -Wl,-rpath,'$$ORIGIN:/opt/sun/pr
+@@ -202,7 +209,9 @@
  endif
  endif
  
@@ -132,11 +131,11 @@ Index: nss/nss/coreconf/Linux.mk
  MKSHLIB         = $(CC) $(DSO_LDOPTS) -Wl,-soname -Wl,$(@:$(OBJDIR)/%.so=%.so) $(RPATH)
  
  ifdef MAPFILE
-Index: nss/nss/coreconf/config.mk
+Index: nss-3.28.4/nss/coreconf/config.mk
 ===================================================================
---- nss.orig/nss/coreconf/config.mk
-+++ nss/nss/coreconf/config.mk
-@@ -31,7 +31,7 @@ endif
+--- nss-3.28.4.orig/nss/coreconf/config.mk	2017-04-26 10:19:04.069358739 -0400
++++ nss-3.28.4/nss/coreconf/config.mk	2017-04-26 10:19:04.069358739 -0400
+@@ -31,7 +31,7 @@
  #######################################################################
  
  TARGET_OSES = FreeBSD BSD_OS NetBSD OpenUNIX OS2 QNX Darwin BeOS OpenBSD \

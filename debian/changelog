@@ -1,3 +1,17 @@
+nss (2:3.28.4-0ubuntu0.16.04.1) xenial-security; urgency=medium
+
+  * Updated to upstream 3.28.4 to fix security issues and get a new CA
+    certificate bundle.
+  * SECURITY UPDATE: DES and Triple DES ciphers birthday attack
+    - CVE-2016-2183
+  * SECURITY UPDATE: out-of-bounds write in Base64 decoding
+    - CVE-2017-5461
+  * debian/patches/*.patch: refreshed for new version.
+  * debian/control: bump libnspr4-dev to 4.13.1.
+  * debian/libnss3.symbols: added new symbols.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 26 Apr 2017 10:25:43 -0400
+
 nss (2:3.26.2-0ubuntu0.16.04.2) xenial-security; urgency=medium
 
   * Updated to upstream 3.26.2 to fix security issues and get a new CA
