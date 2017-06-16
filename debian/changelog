@@ -1,3 +1,15 @@
+nss (2:3.28.4-0ubuntu0.16.04.2) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: DoS via empty SSLv2 messages
+    - debian/patches/CVE-2017-7502.patch: reject broken v2 records in
+      nss/lib/ssl/ssl3gthr.c, nss/lib/ssl/ssldef.c, nss/lib/ssl/sslimpl.h,
+      added tests to nss/gtests/ssl_gtest/ssl_gather_unittest.cc,
+      nss/gtests/ssl_gtest/ssl_gtest.gyp, nss/gtests/ssl_gtest/manifest.mn,
+      nss/gtests/ssl_gtest/ssl_v2_client_hello_unittest.cc.
+    - CVE-2017-7502
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 16 Jun 2017 08:13:46 -0400
+
 nss (2:3.28.4-0ubuntu0.16.04.1) xenial-security; urgency=medium
 
   * Updated to upstream 3.28.4 to fix security issues and get a new CA
