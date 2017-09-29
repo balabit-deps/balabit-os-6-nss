@@ -1,3 +1,12 @@
+nss (2:3.28.4-0ubuntu0.16.04.3) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Use-after-free in TLS 1.2 generating handshake hashes
+    - debian/patches/CVE-2017-7805.patch: Simplify handling of
+      CertificateVerify in nss/lib/ssl/ssl3con.c, nss/lib/ssl/ssl3prot.h.
+    - CVE-2017-7805
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 29 Sep 2017 08:54:11 -0400
+
 nss (2:3.28.4-0ubuntu0.16.04.2) xenial-security; urgency=medium
 
   * SECURITY UPDATE: DoS via empty SSLv2 messages
