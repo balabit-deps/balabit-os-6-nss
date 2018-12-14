@@ -1,3 +1,26 @@
+nss (2:3.28.4-0ubuntu0.16.04.4) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: side-channel attack on ECDSA signatures
+    - debian/patches/CVE-2018-0495.patch: improve ecdsa and dsa in
+      nss/lib/freebl/dsa.c, nss/lib/freebl/ec.c.
+    - CVE-2018-0495
+  * SECURITY UPDATE: ServerHello.random is all zero in v2 ClientHello
+    - debian/patches/CVE-2018-12384-1.patch: fix random logic in
+      nss/lib/ssl/ssl3con.c.
+    - debian/patches/CVE-2018-12384-2.patch: add tests to
+      nss/gtests/ssl_gtest/ssl_loopback_unittest.cc,
+      nss/gtests/ssl_gtest/ssl_v2_client_hello_unittest.cc.
+    - CVE-2018-12384
+  * SECURITY UPDATE: cache side-channel variant of the Bleichenbacher attack
+    - debian/patches/CVE-2018-12404-1.patch: improve RSA key exchange
+      handling in nss/lib/ssl/ssl3con.c.
+    - debian/patches/CVE-2018-12404-3.patch: add constant time
+      mp_to_fixlen_octets in nss/gtests/freebl_gtest/mpi_unittest.cc,
+      nss/lib/freebl/mpi/mpi.c, nss/lib/freebl/mpi/mpi.h.
+    - CVE-2018-12404
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 14 Dec 2018 09:59:33 -0500
+
 nss (2:3.28.4-0ubuntu0.16.04.3) xenial-security; urgency=medium
 
   * SECURITY UPDATE: Use-after-free in TLS 1.2 generating handshake hashes
