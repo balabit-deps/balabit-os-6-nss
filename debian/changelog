@@ -1,3 +1,12 @@
+nss (2:3.28.4-0ubuntu0.16.04.9) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Denial of service
+    - debian/patches/CVE-2019-17007.patch: check got some certs in
+      collect_certs r=jcj in nss/lib/pkcs7/certread.c.
+    - CVE-2019-17007
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Thu, 05 Dec 2019 13:25:47 -0300
+
 nss (2:3.28.4-0ubuntu0.16.04.8) xenial-security; urgency=medium
 
   * SECURITY UPDATE: out-of-bounds write in NSC_EncryptUpdate
