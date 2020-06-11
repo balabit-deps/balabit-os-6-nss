@@ -1,3 +1,12 @@
+nss (2:3.28.4-0ubuntu0.16.04.11) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Timing attack during DSA key generation
+    - debian/patches/CVE-2020-12399.patch: force a fixed length for DSA
+      exponentiation in nss/lib/freebl/dsa.c.
+    - CVE-2020-12399
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 11 Jun 2020 09:45:43 -0400
+
 nss (2:3.28.4-0ubuntu0.16.04.10) xenial-security; urgency=medium
 
   * SECURITY UPDATE: Possible wrong length for cryptographic primitives input
